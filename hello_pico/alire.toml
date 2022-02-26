@@ -1,0 +1,11 @@
+name = "hello_pico"
+description = "Shiny new project"
+version = "0.0.0"
+
+authors = ["phil"]
+maintainers = ["phil <uniphil@gmail.com>"]
+maintainers-logins = ["uniphil"]
+
+executables = ["hello_pico"]
+[[depends-on]]  # Added by alr
+pico_bsp = "^1.1.0"  # Added by alr
