@@ -1,2 +1,4 @@
 *.elf
-fdsa.sh
+.ssh-host
+.ssh-config
+.ssh-control-*

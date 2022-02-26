@@ -145,5 +145,10 @@ continuing the next step in _Create a new project_ to actually add some code...
 
 HELL YEAH BLINKY BLINK
 
+***
 
+I'd rather keep the code on my local machine so the remote is stateless-ish, so i wrapped some stuff into a script -- see `fdsa.sh`.
 
+```bash
+./fdsa.sh hello_pico
+```
