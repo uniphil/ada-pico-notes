@@ -12,4 +12,6 @@ package Dac is
 
    procedure Start;
 
+   procedure Stop;
+
 end Dac;

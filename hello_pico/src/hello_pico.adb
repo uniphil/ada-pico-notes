@@ -6,6 +6,7 @@ with RP.PIO;
 with Pico;
 
 with Dac;
+with PIO_Hi;
 
 procedure Hello_Pico is
    -- hardware resources
@@ -17,16 +18,22 @@ begin
    RP.Clock.Initialize (Pico.XOSC_Frequency);
    RP.Device.Timer.Enable;
 
-   Dac.Initialize (Ping_Channel => DAC_Ping_Channel,
-                   Pong_Channel => DAC_Pong_Channel,
-                   Pio_Device   => DAC_PIO_Device,
-                   Pio_SM       => DAC_PIO_SM);
+   -- Dac.Initialize (Ping_Channel => DAC_Ping_Channel,
+   --                 Pong_Channel => DAC_Pong_Channel,
+   --                 Pio_Device   => DAC_PIO_Device,
+   --                 Pio_SM       => DAC_PIO_SM);
 
    -- Pico.LED.Configure (RP.GPIO.Output);
 
-   Dac.Start;
-   -- loop
-   --    Pico.LED.Toggle;
-   --    RP.Device.Timer.Delay_Milliseconds (100);
-   -- end loop;
+   loop
+      PIO_Hi.Go;
+      -- Dac.Start;
+      -- RP.Device.Timer.Delay_Milliseconds (2000);
+      -- Dac.Stop;
+
+      -- for I in 1..3 loop
+      --    Pico.LED.Toggle;
+      --    RP.Device.Timer.Delay_Milliseconds (100);
+      -- end loop;
+   end loop;
 end Hello_Pico;

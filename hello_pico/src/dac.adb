@@ -65,6 +65,10 @@ package body Dac is
             Wrap        => R2R_Program_Offset + R2R_Program'Length);
 
       RP.PIO.Set_Clock_Frequency (R2R_Config, 100_000);
+      RP.PIO.Set_Out_Shift(R2R_Config,
+         Shift_Right    => True,
+         Autopull       => True,
+         Pull_Threshold => 1);
 
       Pio_Dev.SM_Initialize (Pio_SM_x,
          Initial_PC => R2R_Program_Offset,
@@ -72,24 +76,42 @@ package body Dac is
       Pio_Dev.Set_Pin_Direction (Pio_SM_x, Pico.LED.Pin, RP.PIO.Output);
       Pio_Dev.Set_Enabled (Pio_SM_x, True);
 
-      for Sample of Ping_Buffer loop Sample := 0; end loop;
-      for Sample of Pong_Buffer loop Sample := 0; end loop;
+      for Sample of Ping_Buffer loop Sample := 16#FFFF#; end loop;
+      for Sample of Pong_Buffer loop Sample := 16#FFFF#; end loop;
       RP.DMA.Enable;
       Setup_DMA(Ping_Channel, Pong_Channel, Ping_Buffer);
       Setup_DMA(Pong_Channel, Ping_Channel, Pong_Buffer);
    end Initialize;
 
-   ----------------
+   -----------
    -- Start --
-   ----------------
+   -----------
 
    procedure Start is
    begin
-      RP.DMA.Start  -- alskdjflasdkjfk
-         (Channel => Ping_Channel_Id,
-          From    => Ping_Buffer'Address,
-          To      => Pio_Dev.TX_FIFO_Address (Pio_SM_x),
-          Count   => Transfer_Count);
+      for I in 1..100 loop
+         Pio_Dev.Put (Pio_SM_x, 1);
+         RP.Device.Timer.Delay_Milliseconds (50);
+         Pio_Dev.Put (Pio_SM_x, 0);
+         RP.Device.Timer.Delay_Milliseconds (50);
+      end loop;
+      -- RP.DMA.Enable;
+      -- RP.DMA.Start  -- alskdjflasdkjfk
+      --    (Channel => Ping_Channel_Id,
+      --     From    => Ping_Buffer'Address,
+      --     To      => Pio_Dev.TX_FIFO_Address (Pio_SM_x),
+      --     Count   => Transfer_Count);
    end Start;
+
+   ----------
+   -- Stop --
+   ----------
+
+   procedure Stop is
+   begin
+      RP.DMA.Disable (Ping_Channel_Id);
+      RP.DMA.Disable (Pong_Channel_Id);
+   end stop;
+
 
 end Dac;
