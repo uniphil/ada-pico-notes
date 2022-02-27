@@ -152,3 +152,14 @@ I'd rather keep the code on my local machine so the remote is stateless-ish, so 
 ```bash
 ./fdsa.sh hello_pico
 ```
+
+
+## making stuff
+
+I was not expecting a modern package management solution, but alire is really nice.
+
+Title_Snake_Case feels so extreme.
+
+Tried to add contracts, but nothign was enforced. Tried a few ways but wasn't sure how to enable runtime checks.
+
+The DMA procedure for configuring the addresses auto-starts the DMA. It should be possible to include a flag preventing the DMA from starting yet.

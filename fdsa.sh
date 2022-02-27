@@ -33,7 +33,11 @@ $sssh $host "cd $APP; ~/bin/alr build"
 echo fetch binary...
 rsync -ahe "$sssh" $host:$APP/bin/$APP $APP.elf
 
-echo flash...
-openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -c "program $APP.elf verify reset exit"
-
 $sssh -O exit $host
+
+if [ -z ${2+x} ]; then
+	echo flash...
+	openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -c "program $APP.elf verify reset exit"
+else
+	echo not flashing. omit second arg to flash.
+fi
