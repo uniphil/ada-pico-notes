@@ -163,3 +163,10 @@ Title_Snake_Case feels so extreme.
 Tried to add contracts, but nothign was enforced. Tried a few ways but wasn't sure how to enable runtime checks.
 
 The DMA procedure for configuring the addresses auto-starts the DMA. It should be possible to include a flag preventing the DMA from starting yet.
+
+Ada is case insensitive??????? error messages are sorta confusing here, wow.
+
+Version of `pico_bsp` is a bit out of date (1.2.1 tagged, alire has 1.1.0), so i got a bit misled by reading the `.ads` files in there. Neet of figure out how to point the dep at a git address...
+
+    - er no, i mixed up prp2040_hal and pico_bsp. rp2040 is 1.2.1.
+    - nah but I *was* looking at undreleased code on the main branch. `RP.PIO.DMA_TX_Trigger` is unreleased :'(

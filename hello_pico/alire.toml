@@ -7,5 +7,10 @@ maintainers = ["phil <uniphil@gmail.com>"]
 maintainers-logins = ["uniphil"]
 
 executables = ["hello_pico"]
-[[depends-on]]  # Added by alr
-pico_bsp = "^1.1.0"  # Added by alr
+
+[[depends-on]]
+pico_bsp = "^1.1.0"
+
+[[pins]]
+# pinned until next release with RP.PIO.DMA_TX_Trigger is out
+rp2040_hal = { url = "https://github.com/JeremyGrosser/rp2040_hal.git", commit="90541cd46d8b23750379498d70c100798476bf41" }
