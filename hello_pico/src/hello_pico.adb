@@ -6,7 +6,7 @@ with RP.PIO;
 with Pico;
 
 with Dac;
-with PIO_Hi;
+with R2R;
 
 procedure Hello_Pico is
    -- hardware resources
@@ -25,11 +25,19 @@ begin
 
    -- Pico.LED.Configure (RP.GPIO.Output);
 
+   R2R.Initialize;
+
    loop
-      PIO_Hi.Go;
+      -- null;
+      -- R2R.Go;
       -- Dac.Start;
       -- RP.Device.Timer.Delay_Milliseconds (2000);
       -- Dac.Stop;
+
+      R2R.Put(1);
+      RP.Device.Timer.Delay_Milliseconds (100);
+      R2R.Put(0);
+      RP.Device.Timer.Delay_Milliseconds (100);
 
       -- for I in 1..3 loop
       --    Pico.LED.Toggle;

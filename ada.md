@@ -170,3 +170,5 @@ Version of `pico_bsp` is a bit out of date (1.2.1 tagged, alire has 1.1.0), so i
 
     - er no, i mixed up prp2040_hal and pico_bsp. rp2040 is 1.2.1.
     - nah but I *was* looking at undreleased code on the main branch. `RP.PIO.DMA_TX_Trigger` is unreleased :'(
+
+wrote a bunch of code with DMA + PIO and.... didn't work, hard to debug. started over working backward from PIO instead of forward from DMA.

@@ -1,6 +1,5 @@
 with RP.DMA;
 with RP.PIO;
--- with RP2040_SVD;
 with HAL;
 
 package Dac is
@@ -11,7 +10,5 @@ package Dac is
        Pio_SM                     : RP.PIO.PIO_SM);
 
    procedure Start;
-
-   procedure Stop;
 
 end Dac;
