@@ -1,10 +1,10 @@
 #!/bin/bash
-set -eu
+. $PWD/nice.sh
 
 APP=$1
 
 if [[ ! -f '.ssh-config' ]]; then
-	echo ".ssh-config not found, configuring:"
+	msg Setup .ssh-config:
 	read -p "remote user: " USER
 	read -p "remote host: " HOST
 
@@ -15,29 +15,35 @@ if [[ ! -f '.ssh-config' ]]; then
 		ControlMaster auto
 		ControlPath .ssh-control-%C
 	EOF
-	echo "saved ssh configs."
+	msg Ok saved ssh configs
 fi
 
 host=$(cat .ssh-host)
 sssh='ssh -F .ssh-config'
 
 # set up the shared ssh connection
+msg Connect via ssh
 $sssh -MNf $host
 
-echo sync code...
-rsync -ahe "$sssh" $APP/ $host:$APP
+# and tear it down after
+ssh_exit() {
+	msg Close ssh connection
+	$sssh -O exit $host 2>&1 | etab
+}
+trap ssh_exit EXIT
 
-echo build...
-$sssh $host "cd $APP; ~/bin/alr build"
+msg Upload code
+rsync -ahe "$sssh" $APP/ $host:$APP | etab
 
-echo fetch binary...
-rsync -ahe "$sssh" $host:$APP/bin/$APP $APP.elf
+msg Build
+run $sssh $host "cd $APP; ~/bin/alr build"
 
-$sssh -O exit $host
+msg Download binary
+rsync -ahe "$sssh" $host:$APP/bin/$APP $APP.elf | etab
 
 if [ -z ${2+x} ]; then
-	echo flash...
-	openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -c "program $APP.elf verify reset exit"
+	msg Flash binary
+	run openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -c "program $APP.elf verify reset exit"
 else
-	echo not flashing. omit second arg to flash.
+	msg Skip flashing. Omit second arg to flash.
 fi

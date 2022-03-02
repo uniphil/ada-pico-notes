@@ -35,9 +35,9 @@ begin
       -- Dac.Stop;
 
       R2R.Put(1);
-      RP.Device.Timer.Delay_Milliseconds (100);
+      -- RP.Device.Timer.Delay_Milliseconds (1);
       R2R.Put(0);
-      RP.Device.Timer.Delay_Milliseconds (100);
+      -- RP.Device.Timer.Delay_Milliseconds (10);
 
       -- for I in 1..3 loop
       --    Pico.LED.Toggle;

@@ -33,6 +33,7 @@ from reading the docs, ada has the language features i want for a project like t
     - really interesting features like integers defined as ranges and floats defined by desired precision (compiler picks the underlying type). mod numbers represent positive integers with wraparound overflow at arbitrary maximums.
 - nice enums with a case/when constuct that has exhaustiveness checking
 - variant records (sort of like rust enums) -- http://www.isa.uniovi.es/docencia/TiempoReal/Recursos/textbook/aps12-4.htm
+    - edit later: they're in learn.adacore.com as well, i just missed it the first time: https://learn.adacore.com/courses/intro-to-ada/chapters/more_about_types.html#variant-records
 - no multi-value/tuple returns, but explict in/out/inout function params
 - it just generally seems really thoughtful
 

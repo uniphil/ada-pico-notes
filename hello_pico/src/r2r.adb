@@ -22,7 +22,7 @@ package body R2R is
       Set_Wrap (Config,
          Wrap_Target => Program_Offset,
          Wrap        => Program_Offset + Program'Length);
-      Set_Clock_Frequency (Config, 50_000_000);
+      Set_Clock_Frequency (Config, 100_000);
       Set_Out_Shift (Config,
          Shift_Right    => True,
          Autopull       => True,
