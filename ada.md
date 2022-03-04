@@ -173,3 +173,11 @@ Version of `pico_bsp` is a bit out of date (1.2.1 tagged, alire has 1.1.0), so i
     - nah but I *was* looking at undreleased code on the main branch. `RP.PIO.DMA_TX_Trigger` is unreleased :'(
 
 wrote a bunch of code with DMA + PIO and.... didn't work, hard to debug. started over working backward from PIO instead of forward from DMA.
+
+it's surprising to me that ada has exception-based error handling. seems like it can be non-obvious when a function like Get from https://learn.adacore.com/courses/intro-to-ada/chapters/generics.html#generic-packages can actually raise.
+
+...but being able to add exception handling to any statements blook is pretty cool
+
+unexpected: tasks as a language feature. seems... good?
+not keen on: `with somepackge;` will cause that package's tasks to run automatically???
+i do like the looks of rendez-vous style of task entries though
