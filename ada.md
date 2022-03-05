@@ -183,3 +183,6 @@ not keen on: `with somepackge;` will cause that package's tasks to run automatic
 i do like the looks of rendez-vous style of task entries though
 
 i'm a little surprised at how big the binary is already—352KB with it just doing some PIO stuff—but I have no idea if/how to turn on any optimizations in the compiler. Uploading is slower than it was with the C++ code, and takes longer than the round trip over the network to upload-compile-download from my linux vm.
+
+A `Setup` procedure was added to `rp2040_hal` to configure addresses without auto-starting, which was the thing I was missing in trying to get chaining to work 🎉
+

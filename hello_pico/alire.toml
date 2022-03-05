@@ -12,5 +12,5 @@ executables = ["hello_pico"]
 pico_bsp = "^1.1.0"
 
 [[pins]]
-# pinned until next release with RP.PIO.DMA_TX_Trigger is out
-rp2040_hal = { url = "https://github.com/JeremyGrosser/rp2040_hal.git", commit="90541cd46d8b23750379498d70c100798476bf41" }
+# pinned until next release with RP.PIO.DMA_TX_Trigger + RP.DMA.Setup is out
+rp2040_hal = { url = "https://github.com/JeremyGrosser/rp2040_hal.git", commit="ff1b51fffdc1d30801e5dec1c471a2bf13c10be6" }
