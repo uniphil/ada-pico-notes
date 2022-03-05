@@ -181,3 +181,5 @@ it's surprising to me that ada has exception-based error handling. seems like it
 unexpected: tasks as a language feature. seems... good?
 not keen on: `with somepackge;` will cause that package's tasks to run automatically???
 i do like the looks of rendez-vous style of task entries though
+
+i'm a little surprised at how big the binary is already—352KB with it just doing some PIO stuff—but I have no idea if/how to turn on any optimizations in the compiler. Uploading is slower than it was with the C++ code, and takes longer than the round trip over the network to upload-compile-download from my linux vm.

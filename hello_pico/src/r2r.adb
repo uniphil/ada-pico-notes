@@ -1,15 +1,9 @@
 package body R2R is
-
-   Trap           : constant RP.PIO.Program :=
-      (1 => Encode (JMP'        (Address => 0,
-                                 others  => <>)));
-
    Program        : constant RP.PIO.Program :=
       (1 => Encode (SHIFT_OUT'  (Destination => PINS,
                                  Bit_Count   => 16,
                                  others      => <>)));
-   Trap_Offset    : constant PIO_Address := 0;
-   Program_Offset : constant PIO_Address := 1;
+   Program_Offset : constant PIO_Address := 0;
    SM             : constant PIO_SM := 0;
    Config         : PIO_SM_Config := Default_SM_Config;
    P              : PIO_Device renames RP.Device.PIO_0;
@@ -20,11 +14,9 @@ package body R2R is
       Pico.LED.Configure (RP.GPIO.Output, RP.GPIO.Floating, P.GPIO_Function);
 
       P.Enable;
-      P.Load (Trap,    Trap_Offset);
       P.Load (Program, Program_Offset);
 
       Set_Out_Pins (Config, Pico.LED.Pin, 1);
-      Set_Set_Pins (Config, Pico.LED.Pin, 1);
       Set_Wrap (Config,
          Wrap_Target => Program_Offset,
          Wrap        => Program_Offset + Program'Length);
